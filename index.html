@@ -1,20 +1,995 @@
 <!DOCTYPE html>
+
 <html lang="ru">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Работа и вакансии</title>
-<style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f3f5f8;color:#172033}header{background:#172033;color:white;padding:48px 20px;text-align:center}main{max-width:760px;margin:30px auto;padding:0 16px}.job{background:white;padding:22px;margin-bottom:16px;border-radius:14px;box-shadow:0 4px 16px #0000000a}h1{margin-top:0}.note{color:#596579;line-height:1.6}footer{text-align:center;padding:25px;color:#596579}
-</style>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta name="theme-color" content="#f7f8fa">
+
+  <meta name="description" content="Информация о военных специальностях, требованиях, обязанностях и условиях службы по контракту.">
+
+  <title>Служба по контракту | Направления и специальности</title>
+
+  <style>
+
+    :root {
+
+      --bg: #f7f8fa;
+
+      --surface: #ffffff;
+
+      --text: #202a36;
+
+      --muted: #687586;
+
+      --line: #e5e9ef;
+
+      --accent: #285b49;
+
+      --accent-light: #eaf3ee;
+
+      --radius: 18px;
+
+    }
+
+    * {
+
+      box-sizing: border-box;
+
+    }
+
+    html {
+
+      scroll-behavior: smooth;
+
+    }
+
+    body {
+
+      margin: 0;
+
+      background: var(--bg);
+
+      color: var(--text);
+
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+
+        Roboto, Arial, sans-serif;
+
+      line-height: 1.6;
+
+    }
+
+    a {
+
+      color: var(--accent);
+
+    }
+
+    .container {
+
+      width: min(1080px, calc(100% - 36px));
+
+      margin: 0 auto;
+
+    }
+
+    header {
+
+      background: #fff;
+
+      border-bottom: 1px solid var(--line);
+
+    }
+
+    .nav {
+
+      min-height: 72px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 20px;
+
+    }
+
+    .brand {
+
+      color: var(--text);
+
+      text-decoration: none;
+
+      font-size: 18px;
+
+      font-weight: 750;
+
+      letter-spacing: -0.5px;
+
+    }
+
+    .nav-link {
+
+      color: var(--muted);
+
+      text-decoration: none;
+
+      font-size: 14px;
+
+    }
+
+    .hero {
+
+      padding: 76px 0 54px;
+
+    }
+
+    .eyebrow {
+
+      display: inline-block;
+
+      padding: 6px 11px;
+
+      background: var(--accent-light);
+
+      color: var(--accent);
+
+      border-radius: 999px;
+
+      font-size: 12px;
+
+      font-weight: 700;
+
+      letter-spacing: 0.6px;
+
+      text-transform: uppercase;
+
+    }
+
+    h1 {
+
+      max-width: 790px;
+
+      margin: 22px 0 18px;
+
+      font-size: clamp(36px, 6vw, 62px);
+
+      line-height: 1.08;
+
+      letter-spacing: -2px;
+
+    }
+
+    .hero p {
+
+      max-width: 680px;
+
+      margin: 0;
+
+      color: var(--muted);
+
+      font-size: 18px;
+
+    }
+
+    .hero-note {
+
+      max-width: 760px;
+
+      margin-top: 24px;
+
+      padding: 16px 19px;
+
+      background: var(--surface);
+
+      border: 1px solid var(--line);
+
+      border-radius: 14px;
+
+      color: var(--muted);
+
+      font-size: 14px;
+
+    }
+
+    section {
+
+      padding: 28px 0;
+
+    }
+
+    .section-heading {
+
+      margin-bottom: 23px;
+
+    }
+
+    h2 {
+
+      margin: 0 0 8px;
+
+      font-size: clamp(25px, 4vw, 34px);
+
+      line-height: 1.2;
+
+      letter-spacing: -1px;
+
+    }
+
+    .section-heading p {
+
+      margin: 0;
+
+      color: var(--muted);
+
+    }
+
+    .grid {
+
+      display: grid;
+
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+
+      gap: 17px;
+
+    }
+
+    .card {
+
+      display: flex;
+
+      flex-direction: column;
+
+      padding: 23px;
+
+      background: var(--surface);
+
+      border: 1px solid var(--line);
+
+      border-radius: var(--radius);
+
+      transition: border-color 0.2s, transform 0.2s;
+
+    }
+
+    .card:hover {
+
+      border-color: #b8cbbf;
+
+      transform: translateY(-2px);
+
+    }
+
+    .card-top {
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 13px;
+
+      margin-bottom: 14px;
+
+    }
+
+    .number {
+
+      display: flex;
+
+      flex-shrink: 0;
+
+      align-items: center;
+
+      justify-content: center;
+
+      width: 42px;
+
+      height: 42px;
+
+      background: var(--accent-light);
+
+      color: var(--accent);
+
+      border-radius: 13px;
+
+      font-size: 14px;
+
+      font-weight: 750;
+
+    }
+
+    h3 {
+
+      margin: 0;
+
+      font-size: 19px;
+
+      line-height: 1.35;
+
+      letter-spacing: -0.3px;
+
+    }
+
+    .label {
+
+      margin: 12px 0 3px;
+
+      color: var(--accent);
+
+      font-size: 12px;
+
+      font-weight: 750;
+
+      letter-spacing: 0.6px;
+
+      text-transform: uppercase;
+
+    }
+
+    .card p {
+
+      margin: 0;
+
+      color: var(--muted);
+
+      font-size: 14px;
+
+    }
+
+    .checklist {
+
+      padding: 25px;
+
+      background: var(--surface);
+
+      border: 1px solid var(--line);
+
+      border-radius: var(--radius);
+
+    }
+
+    .checklist h3 {
+
+      margin-bottom: 12px;
+
+    }
+
+    .checklist ul {
+
+      margin: 0;
+
+      padding-left: 22px;
+
+    }
+
+    .checklist li {
+
+      padding: 6px 0;
+
+      color: var(--muted);
+
+    }
+
+    .resources {
+
+      display: grid;
+
+      gap: 12px;
+
+    }
+
+    .resource {
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 15px;
+
+      padding: 18px 20px;
+
+      background: var(--surface);
+
+      border: 1px solid var(--line);
+
+      border-radius: 14px;
+
+      color: var(--text);
+
+      text-decoration: none;
+
+      transition: border-color 0.2s;
+
+    }
+
+    .resource:hover {
+
+      border-color: #b8cbbf;
+
+    }
+
+    .resource strong {
+
+      display: block;
+
+      font-size: 15px;
+
+    }
+
+    .resource small {
+
+      display: block;
+
+      margin-top: 3px;
+
+      color: var(--muted);
+
+    }
+
+    .arrow {
+
+      color: var(--accent);
+
+      font-size: 21px;
+
+    }
+
+    .disclaimer {
+
+      padding: 22px 24px;
+
+      background: #eef1f5;
+
+      border-radius: var(--radius);
+
+      color: #526071;
+
+      font-size: 14px;
+
+    }
+
+    .disclaimer strong {
+
+      display: block;
+
+      margin-bottom: 10px;
+
+      color: var(--text);
+
+      font-size: 16px;
+
+    }
+
+    .disclaimer ul {
+
+      margin: 0;
+
+      padding-left: 20px;
+
+    }
+
+    .disclaimer li {
+
+      padding: 4px 0;
+
+    }
+
+    footer {
+
+      margin-top: 42px;
+
+      padding: 27px 0;
+
+      border-top: 1px solid var(--line);
+
+      color: var(--muted);
+
+      font-size: 13px;
+
+    }
+
+    @media (max-width: 680px) {
+
+      .container {
+
+        width: min(100% - 28px, 520px);
+
+      }
+
+      .grid {
+
+        grid-template-columns: 1fr;
+
+      }
+
+      .hero {
+
+        padding: 54px 0 38px;
+
+      }
+
+      h1 {
+
+        letter-spacing: -1.3px;
+
+      }
+
+      .hero p {
+
+        font-size: 16px;
+
+      }
+
+      .nav {
+
+        min-height: 62px;
+
+      }
+
+      .nav-link {
+
+        font-size: 12px;
+
+        text-align: right;
+
+      }
+
+      .card {
+
+        padding: 20px;
+
+      }
+
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      html {
+
+        scroll-behavior: auto;
+
+      }
+
+      *, *::before, *::after {
+
+        transition: none !important;
+
+      }
+
+    }
+
+  </style>
+
 </head>
+
 <body>
-<header><h1>Найди свою работу</h1><p>Актуальные вакансии и информация об условиях</p></header>
-<main>
-<section class="job"><h2>Вакансия № 1</h2><p class="note">Здесь будет описание работы, требования и условия оплаты.</p></section>
-<section class="job"><h2>Вакансия № 2</h2><p class="note">Здесь будут обязанности, график и условия трудоустройства.</p></section>
-<section class="job"><h2>Вакансия № 3</h2><p class="note">Здесь будет дополнительная информация о вакансии.</p></section>
-</main>
-<footer>Уточняйте условия и детали вакансии перед трудоустройством.</footer>
+
+  <header>
+
+    <div class="container nav">
+
+      <a class="brand" href="#">Справочник</a>
+
+      <a class="nav-link" href="#conditions">Условия и документы</a>
+
+    </div>
+
+  </header>
+
+  <main>
+
+    <section class="hero">
+
+      <div class="container">
+
+        <span class="eyebrow">Информационный справочник</span>
+
+        <h1>Военные специальности и направления службы</h1>
+
+        <p>
+
+          Краткая информация о должностях, обязанностях и требованиях.
+
+          Конкретное назначение зависит от отбора, квалификации и решения
+
+          уполномоченных органов.
+
+        </p>
+
+        <div class="hero-note">
+
+          Описание направлений носит справочный характер. Должность,
+
+          условия договора, выплаты и место службы необходимо уточнять
+
+          до подписания документов.
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <section id="vacancies">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <h2>Направления службы</h2>
+
+          <p>Основные обязанности и требования по каждому направлению.</p>
+
+        </div>
+
+        <div class="grid">
+
+          <article class="card">
+
+            <div class="card-top">
+
+              <div class="number">01</div>
+
+              <h3>Водитель</h3>
+
+            </div>
+
+            <div class="label">Обязанности</div>
+
+            <p>Управление транспортом, перевозка людей и имущества, проверка состояния автомобиля.</p>
+
+            <div class="label">Что требуется</div>
+
+            <p>Водительские права соответствующей категории. Опыт вождения будет преимуществом.</p>
+
+          </article>
+
+          <article class="card">
+
+            <div class="card-top">
+
+              <div class="number">02</div>
+
+              <h3>Механик по ремонту техники</h3>
+
+            </div>
+
+            <div class="label">Обязанности</div>
+
+            <p>Обслуживание и ремонт автомобилей, двигателей и оборудования.</p>
+
+            <div class="label">Что требуется</div>
+
+            <p>Технические навыки. Опыт автомеханика, слесаря или электрика будет преимуществом.</p>
+
+          </article>
+
+          <article class="card">
+
+            <div class="card-top">
+
+              <div class="number">03</div>
+
+              <h3>Специалист связи</h3>
+
+            </div>
+
+            <div class="label">Обязанности</div>
+
+            <p>Работа со средствами связи, радиостанциями и оборудованием передачи данных.</p>
+
+            <div class="label">Что требуется</div>
+
+            <p>Внимательность, дисциплина и готовность освоить техническое оборудование.</p>
+
+          </article>
+
+          <article class="card">
+
+            <div class="card-top">
+
+              <div class="number">04</div>
+
+              <h3>Специалист по БПЛА</h3>
+
+            </div>
+
+            <div class="label">Обязанности</div>
+
+            <p>Работа с беспилотными комплексами, наземным оборудованием и техническим обслуживанием.</p>
+
+            <div class="label">Что требуется</div>
+
+            <p>Навыки работы с компьютерами или электроникой будут преимуществом. Требуется профильная подготовка.</p>
+
+          </article>
+
+          <article class="card">
+
+            <div class="card-top">
+
+              <div class="number">05</div>
+
+              <h3>Технический специалист ПВО</h3>
+
+            </div>
+
+            <div class="label">Обязанности</div>
+
+            <p>Работа с техническими системами, средствами обнаружения и оборудованием подразделения.</p>
+
+            <div class="label">Что требуется</div>
+
+            <p>Внимательность, техническое мышление и готовность к специальному обучению.</p>
+
+          </article>
+
+          <article class="card">
+
+            <div class="card-top">
+
+              <div class="number">06</div>
+
+              <h3>Материально-техническое обеспечение</h3>
+
+            </div>
+
+            <div class="label">Обязанности</div>
+
+            <p>Учёт, хранение и выдача имущества, работа с документами и снабжением.</p>
+
+            <div class="label">Что требуется</div>
+
+            <p>Организованность, ответственность и внимательность при работе с материальными ценностями.</p>
+
+          </article>
+
+          <article class="card">
+
+            <div class="card-top">
+
+              <div class="number">07</div>
+
+              <h3>Медицинское направление</h3>
+
+            </div>
+
+            <div class="label">Обязанности</div>
+
+            <p>Медицинская помощь и обеспечение работы медицинского подразделения в пределах квалификации.</p>
+
+            <div class="label">Что требуется</div>
+
+            <p>Медицинское образование и соответствующая подготовка для профильных должностей.</p>
+
+          </article>
+
+          <article class="card">
+
+            <div class="card-top">
+
+              <div class="number">08</div>
+
+              <h3>Инженерно-техническое направление</h3>
+
+            </div>
+
+            <div class="label">Обязанности</div>
+
+            <p>Обслуживание инженерной техники и выполнение инженерных работ по назначению.</p>
+
+            <div class="label">Что требуется</div>
+
+            <p>Технические навыки. Для отдельных должностей нужна специальная подготовка.</p>
+
+          </article>
+
+          <article class="card">
+
+            <div class="card-top">
+
+              <div class="number">09</div>
+
+              <h3>Танковое направление</h3>
+
+            </div>
+
+            <div class="label">Обязанности</div>
+
+            <p>Работа в составе экипажа и обслуживание штатных систем бронетехники.</p>
+
+            <div class="label">Что требуется</div>
+
+            <p>Дисциплина, соответствие установленным требованиям и готовность к специальному обучению.</p>
+
+          </article>
+
+          <article class="card">
+
+            <div class="card-top">
+
+              <div class="number">10</div>
+
+              <h3>Мотострелковое направление</h3>
+
+            </div>
+
+            <div class="label">Обязанности</div>
+
+            <p>Выполнение общевойсковых задач в составе подразделения.</p>
+
+            <div class="label">Что требуется</div>
+
+            <p>Соответствие медицинским и другим установленным требованиям, готовность к физическим нагрузкам и военной подготовке.</p>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <section id="conditions">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <h2>Что проверить заранее</h2>
+
+          <p>Перед подписанием договора получите ответы на ключевые вопросы.</p>
+
+        </div>
+
+        <div class="checklist">
+
+          <h3>Основные пункты</h3>
+
+          <ul>
+
+            <li>Какая должность указана в документах и возможна ли её смена.</li>
+
+            <li>Каков срок договора и как регулируются его продление и прекращение.</li>
+
+            <li>Из чего складываются выплаты и при каких условиях они начисляются.</li>
+
+            <li>Какие документы, медицинские проверки и этапы отбора предусмотрены.</li>
+
+            <li>Каковы обязанности, место службы и условия назначения.</li>
+
+          </ul>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <section id="sources">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <h2>Официальные источники</h2>
+
+          <p>Проверяйте действующие документы и актуальность условий.</p>
+
+        </div>
+
+        <div class="resources">
+
+          <a class="resource"
+
+             href="https://pravo.gov.ru/"
+
+             target="_blank"
+
+             rel="noopener noreferrer">
+
+            <span>
+
+              <strong>Официальный портал правовой информации</strong>
+
+              <small>Нормативные правовые акты</small>
+
+            </span>
+
+            <span class="arrow">↗</span>
+
+          </a>
+
+          <a class="resource"
+
+             href="https://www.gosuslugi.ru/"
+
+             target="_blank"
+
+             rel="noopener noreferrer">
+
+            <span>
+
+              <strong>Госуслуги</strong>
+
+              <small>Государственные услуги и справочная информация</small>
+
+            </span>
+
+            <span class="arrow">↗</span>
+
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <section>
+
+      <div class="container">
+
+        <div class="disclaimer">
+
+          <strong>Важно перед принятием решения</strong>
+
+          <ul>
+
+            <li>
+
+              Конкретная должность зависит от результатов отбора
+
+              и решения уполномоченных органов.
+
+            </li>
+
+            <li>
+
+              Наличие гражданских навыков не гарантирует назначения
+
+              на выбранную специальность.
+
+            </li>
+
+            <li>
+
+              Условия выплат, срок договора и порядок его прекращения
+
+              нужно проверять по действующим документам.
+
+            </li>
+
+          </ul>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer>
+
+    <div class="container">
+
+      Информационный справочник. Не является официальным сайтом
+
+      государственного органа.
+
+    </div>
+
+  </footer>
+
 </body>
+
 </html>
