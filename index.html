@@ -1,41 +1,51 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Независимый информационный справочник о военных специальностях, требованиях и документах.">
-  <title>Военные специальности | Информационный справочник</title>
+  <meta name="theme-color" content="#071426">
+
+  <title>КонтрСоюз — рекрутинговый центр</title>
+  <meta name="description" content="КонтрСоюз — информационная поддержка кандидатов по вопросам контрактной службы. Информация о направлениях, требованиях и официальных источниках.">
 
   <style>
     :root {
-      --bg: #f3f5f2;
-      --card: #ffffff;
-      --text: #202923;
-      --muted: #68736c;
-      --green: #294c3a;
-      --green-light: #e7eee8;
-      --border: #dfe5df;
+      --bg: #07111f;
+      --bg-light: #0b1b30;
+      --panel: #10233a;
+      --panel-light: #142b46;
+      --blue: #1685f8;
+      --blue-light: #48b5ff;
+      --text: #f4f7fb;
+      --muted: #aab8ca;
+      --border: rgba(125, 170, 220, .18);
       --radius: 18px;
+      --max-width: 1160px;
     }
 
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     html {
       scroll-behavior: smooth;
+      scroll-padding-top: 90px;
     }
 
     body {
-      margin: 0;
       background: var(--bg);
       color: var(--text);
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Arial, sans-serif;
       line-height: 1.65;
     }
 
     a {
-      color: var(--green);
+      color: inherit;
+      text-decoration: none;
     }
 
     img {
@@ -44,13 +54,19 @@
     }
 
     .container {
-      width: min(1120px, calc(100% - 32px));
+      width: min(var(--max-width), calc(100% - 36px));
       margin: 0 auto;
     }
 
-    header {
-      background: #fff;
+    /* Шапка */
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(5, 15, 28, .94);
       border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(14px);
     }
 
     .nav {
@@ -58,43 +74,102 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 20px;
-      flex-wrap: wrap;
-      padding: 14px 0;
+      gap: 22px;
     }
 
     .brand {
-      font-weight: 800;
-      color: var(--green);
-      font-size: 19px;
-      text-decoration: none;
-    }
-
-    nav {
       display: flex;
-      flex-wrap: wrap;
-      gap: 18px;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
     }
 
-    nav a {
+    .brand img {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--blue);
+    }
+
+    .brand-name {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: .3px;
+    }
+
+    .brand-name span {
+      color: var(--blue-light);
+    }
+
+    .brand-caption {
+      display: block;
+      color: var(--muted);
+      font-size: 10px;
+      letter-spacing: 2.2px;
+      text-transform: uppercase;
+      line-height: 1.5;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      font-size: 13px;
+      color: #d1dceb;
+    }
+
+    .nav-links a:hover {
+      color: var(--blue-light);
+    }
+
+    .nav-button,
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      background: linear-gradient(135deg, #0876ec, #25a6ff);
+      color: #fff;
+      font-weight: 700;
+      padding: 13px 20px;
+      border-radius: 9px;
+      transition: .2s ease;
+      border: 1px solid transparent;
+    }
+
+    .nav-button {
+      padding: 10px 15px;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    .button:hover,
+    .nav-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(22, 133, 248, .22);
+    }
+
+    .button-outline {
+      background: transparent;
+      border-color: rgba(72, 181, 255, .6);
       color: var(--text);
-      text-decoration: none;
-      font-size: 14px;
     }
 
-    nav a:hover,
-    .text-link:hover {
-      text-decoration: underline;
+    .button-outline:hover {
+      background: rgba(22, 133, 248, .1);
     }
+
+    /* Главный баннер */
 
     .hero {
       position: relative;
-      overflow: hidden;
-      min-height: 390px;
+      min-height: 500px;
       display: flex;
       align-items: center;
-      color: white;
-      background: #263d31;
+      overflow: hidden;
+      background: #061224;
+      border-bottom: 1px solid var(--border);
     }
 
     .hero-image {
@@ -103,705 +178,1115 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: center 40%;
+      object-position: center;
+      opacity: .58;
     }
 
     .hero::after {
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(
-        90deg,
-        rgba(13, 29, 20, .91) 0%,
-        rgba(13, 29, 20, .72) 52%,
-        rgba(13, 29, 20, .24) 100%
-      );
+      background:
+        linear-gradient(90deg,
+          rgba(3, 12, 25, .96) 0%,
+          rgba(3, 12, 25, .83) 35%,
+          rgba(3, 12, 25, .35) 100%),
+        linear-gradient(0deg, rgba(4, 14, 28, .9), transparent 55%);
     }
 
     .hero-content {
       position: relative;
-      z-index: 1;
-      max-width: 760px;
-      padding: 62px 0;
+      z-index: 2;
+      max-width: 720px;
+      padding: 75px 0 85px;
     }
 
     .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--blue-light);
       font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 2px;
+      font-weight: 800;
+      letter-spacing: 2.5px;
       text-transform: uppercase;
-      color: #d5e3d8;
+      margin-bottom: 22px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 2px;
+      background: var(--blue-light);
     }
 
     h1 {
-      font-size: clamp(32px, 5vw, 52px);
-      line-height: 1.12;
-      margin: 15px 0 20px;
+      font-size: clamp(38px, 6vw, 66px);
+      line-height: 1.06;
+      letter-spacing: -1.8px;
+      margin-bottom: 24px;
+      font-weight: 850;
     }
 
-    .hero p {
-      max-width: 650px;
-      color: #eef2ee;
+    h1 span {
+      color: var(--blue-light);
+    }
+
+    .hero-description {
+      max-width: 590px;
+      color: #d1dbea;
       font-size: 17px;
+      margin-bottom: 30px;
     }
 
-    .hero-note {
-      margin-top: 24px;
-      padding: 14px 17px;
-      border-left: 3px solid #c8d9cb;
-      background: rgba(255,255,255,.10);
-      font-size: 14px;
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 35px;
     }
 
-    main section {
-      padding: 58px 0;
+    .hero-points {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      color: #d5e0ee;
+      font-size: 12px;
+    }
+
+    .hero-point {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .check-icon {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      flex: 0 0 21px;
+      height: 21px;
+      border: 1px solid var(--blue-light);
+      border-radius: 50%;
+      color: var(--blue-light);
+      font-size: 12px;
+    }
+
+    /* Общие секции */
+
+    section {
+      padding: 84px 0;
     }
 
     .section-heading {
       max-width: 720px;
-      margin-bottom: 28px;
+      margin-bottom: 35px;
+    }
+
+    .section-label {
+      display: block;
+      color: var(--blue-light);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 11px;
+      font-weight: 800;
+      margin-bottom: 12px;
     }
 
     h2 {
-      margin: 0 0 12px;
-      font-size: clamp(26px, 4vw, 35px);
-      line-height: 1.2;
+      font-size: clamp(29px, 4vw, 43px);
+      line-height: 1.15;
+      letter-spacing: -.7px;
+      margin-bottom: 15px;
     }
 
-    .section-heading p,
-    .muted {
-      color: var(--muted);
-    }
-
-    .photo-strip {
-      display: grid;
-      grid-template-columns: 1.4fr 1fr;
-      gap: 18px;
-      margin-bottom: 30px;
-    }
-
-    .photo {
-      margin: 0;
-      overflow: hidden;
-      background: #e2e7e1;
-      border-radius: var(--radius);
-    }
-
-    .photo img {
-      width: 100%;
-      height: 270px;
-      object-fit: cover;
-    }
-
-    .photo figcaption {
-      padding: 10px 14px;
-      color: var(--muted);
-      font-size: 12px;
-      background: white;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .specialty {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 24px;
-    }
-
-    .number {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 43px;
-      height: 43px;
-      border-radius: 12px;
-      color: var(--green);
-      background: var(--green-light);
-      font-weight: 800;
-      font-size: 14px;
-    }
-
-    .specialty h3 {
-      font-size: 20px;
-      margin: 15px 0 9px;
-    }
-
-    .specialty p {
-      margin: 0 0 12px;
+    .section-description {
       color: var(--muted);
       font-size: 15px;
     }
 
-    .specialty strong {
-      font-size: 14px;
+    /* О центре */
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: .85fr 1.15fr;
+      gap: 45px;
+      align-items: center;
     }
 
-    .soft-section {
-      background: #e9eee9;
+    .about-image-wrap {
+      position: relative;
+      max-width: 470px;
+      margin: 0 auto;
     }
 
-    .checklist {
+    .about-image {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 3px solid var(--blue);
+      box-shadow: 0 0 50px rgba(22, 133, 248, .15);
+    }
+
+    .about-content p {
+      color: var(--muted);
+      margin-bottom: 17px;
+    }
+
+    .about-content strong {
+      color: var(--text);
+    }
+
+    .about-note {
+      padding: 17px 19px;
+      margin-top: 22px;
+      background: rgba(22, 133, 248, .08);
+      border-left: 3px solid var(--blue);
+      border-radius: 0 10px 10px 0;
+      color: #c9d7e9;
+      font-size: 13px;
+    }
+
+    /* Направления */
+
+    .specialties {
+      background: linear-gradient(180deg, #09182a, #07111f);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .specialty-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
+      gap: 15px;
     }
 
-    .check-item {
-      padding: 20px;
-      background: white;
-      border-radius: 14px;
-      border: 1px solid var(--border);
-    }
-
-    .check-item h3 {
-      margin: 0 0 8px;
-      font-size: 17px;
-    }
-
-    .check-item p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .resources {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 16px;
-    }
-
-    .resource {
-      display: block;
-      padding: 22px;
-      border-radius: 14px;
-      background: white;
-      border: 1px solid var(--border);
-      text-decoration: none;
-    }
-
-    .resource strong {
-      display: block;
-      margin-bottom: 5px;
-      font-size: 17px;
-    }
-
-    .resource span {
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .notice {
+    .specialty-card {
+      position: relative;
+      overflow: hidden;
       padding: 24px;
-      background: #fff;
       border: 1px solid var(--border);
       border-radius: var(--radius);
+      background: linear-gradient(145deg, #10233a, #0b192b);
+      transition: border-color .2s, transform .2s;
     }
 
-    .notice h3 {
-      margin-top: 0;
+    .specialty-card:hover {
+      border-color: rgba(72, 181, 255, .55);
+      transform: translateY(-3px);
     }
 
-    .contact-panel {
-      background: #233b2d;
-      color: white;
-      border-radius: 22px;
-      padding: 30px;
-    }
-
-    .contact-panel p {
-      color: #e0e8e1;
-    }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-      margin-top: 22px;
-    }
-
-    .contact-link {
-      display: block;
-      color: white;
-      text-decoration: none;
-      padding: 16px;
-      border: 1px solid rgba(255,255,255,.22);
-      border-radius: 12px;
-      overflow-wrap: anywhere;
-    }
-
-    .contact-link:hover {
-      background: rgba(255,255,255,.08);
-    }
-
-    .contact-label {
-      display: block;
-      color: #c6d6c9;
+    .specialty-number {
+      color: var(--blue-light);
       font-size: 12px;
-      margin-bottom: 4px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
     }
 
-    footer {
-      padding: 28px 0;
-      background: #fff;
+    .specialty-card h3 {
+      font-size: 19px;
+      margin-bottom: 10px;
+    }
+
+    .specialty-card p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+
+    .requirements {
       border-top: 1px solid var(--border);
+      padding-top: 13px;
+      font-size: 12px;
+      color: #d5e3f2;
+    }
+
+    .requirements strong {
+      color: var(--blue-light);
+    }
+
+    .specialty-warning {
+      margin-top: 24px;
+      padding: 17px 20px;
+      border: 1px solid rgba(72, 181, 255, .25);
+      border-radius: 12px;
+      background: rgba(22, 133, 248, .06);
       color: var(--muted);
       font-size: 13px;
     }
 
-    .footer-inner {
-      display: flex;
-      justify-content: space-between;
-      gap: 18px;
-      flex-wrap: wrap;
+    /* Порядок действий */
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
     }
 
-    @media (max-width: 700px) {
-      .container {
-        width: min(100% - 24px, 1120px);
-      }
+    .step {
+      padding: 25px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--panel);
+    }
 
-      .nav {
-        align-items: flex-start;
-      }
+    .step-number {
+      width: 39px;
+      height: 39px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      background: rgba(22, 133, 248, .14);
+      border: 1px solid rgba(72, 181, 255, .35);
+      color: var(--blue-light);
+      font-size: 16px;
+      font-weight: 800;
+      margin-bottom: 17px;
+    }
 
-      nav {
-        gap: 12px;
+    .step h3 {
+      font-size: 17px;
+      margin-bottom: 9px;
+    }
+
+    .step p {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* Чек-лист */
+
+    .checklist-section {
+      background: #0a192b;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .checklist-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .checklist-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 13px;
+      padding: 17px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, .02);
+    }
+
+    .checklist-item .check-icon {
+      margin-top: 2px;
+    }
+
+    .checklist-item span:last-child {
+      color: #d5e0ee;
+      font-size: 14px;
+    }
+
+    /* Источники */
+
+    .source-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 15px;
+    }
+
+    .source-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 22px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: var(--panel);
+      transition: border-color .2s;
+    }
+
+    .source-card:hover {
+      border-color: var(--blue-light);
+    }
+
+    .source-card h3 {
+      font-size: 16px;
+      margin-bottom: 5px;
+    }
+
+    .source-card p {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .source-arrow {
+      color: var(--blue-light);
+      font-size: 24px;
+      flex-shrink: 0;
+    }
+
+    .source-disclaimer {
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* Контакты */
+
+    .contact-section {
+      padding-top: 35px;
+    }
+
+    .contact-panel {
+      position: relative;
+      overflow: hidden;
+      padding: 44px;
+      border: 1px solid rgba(72, 181, 255, .25);
+      border-radius: 22px;
+      background:
+        radial-gradient(ellipse at top right, rgba(22, 133, 248, .18), transparent 55%),
+        linear-gradient(135deg, #10233a, #091626);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 35px;
+      align-items: center;
+    }
+
+    .contact-panel h2 {
+      font-size: clamp(28px, 4vw, 40px);
+    }
+
+    .contact-panel p {
+      color: var(--muted);
+      margin-bottom: 23px;
+    }
+
+    .contact-methods {
+      display: grid;
+      gap: 12px;
+    }
+
+    .contact-method {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      padding: 16px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: rgba(3, 12, 25, .35);
+    }
+
+    .contact-symbol {
+      width: 40px;
+      height: 40px;
+      flex: 0 0 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(22, 133, 248, .14);
+      color: var(--blue-light);
+      border-radius: 10px;
+      font-size: 19px;
+    }
+
+    .contact-method small {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .contact-method strong {
+      font-size: 15px;
+      overflow-wrap: anywhere;
+    }
+
+    .contact-method:hover {
+      border-color: rgba(72, 181, 255, .6);
+    }
+
+    .contact-disclaimer {
+      margin-top: 23px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* Подвал */
+
+    footer {
+      padding: 28px 0;
+      border-top: 1px solid var(--border);
+      background: #050d18;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .footer-brand {
+      font-weight: 800;
+      font-size: 15px;
+    }
+
+    .footer-brand span {
+      color: var(--blue-light);
+    }
+
+    .footer-caption {
+      color: var(--muted);
+      font-size: 11px;
+      margin-top: 3px;
+    }
+
+    .footer-right {
+      text-align: right;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    /* Адаптация под телефон */
+
+    @media (max-width: 850px) {
+      .nav-links {
+        display: none;
       }
 
       .hero {
-        min-height: 430px;
+        min-height: 470px;
       }
 
       .hero-content {
-        padding: 48px 0;
+        padding: 65px 0;
       }
 
-      .hero::after {
-        background: rgba(13, 29, 20, .72);
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
       }
 
-      main section {
-        padding: 42px 0;
+      .about-image-wrap {
+        max-width: 320px;
       }
 
-      .grid,
-      .checklist,
-      .resources,
-      .contact-grid,
-      .photo-strip {
+      .steps-grid {
         grid-template-columns: 1fr;
       }
 
-      .photo img {
-        height: 230px;
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .container {
+        width: min(100% - 28px, var(--max-width));
       }
 
-      .specialty {
-        padding: 21px;
+      .nav {
+        min-height: 68px;
+        gap: 10px;
+      }
+
+      .brand {
+        gap: 8px;
+      }
+
+      .brand img {
+        width: 39px;
+        height: 39px;
+      }
+
+      .brand-name {
+        font-size: 17px;
+      }
+
+      .brand-caption {
+        font-size: 8px;
+        letter-spacing: 1.2px;
+      }
+
+      .nav-button {
+        font-size: 11px;
+        padding: 9px 10px;
+      }
+
+      .hero {
+        min-height: 520px;
+      }
+
+      .hero-image {
+        object-position: 58% center;
+      }
+
+      .hero::after {
+        background:
+          linear-gradient(90deg, rgba(3, 12, 25, .93), rgba(3, 12, 25, .55)),
+          linear-gradient(0deg, rgba(4, 14, 28, .85), transparent);
+      }
+
+      .hero-content {
+        padding: 55px 0;
+      }
+
+      h1 {
+        font-size: 40px;
+        letter-spacing: -1px;
+      }
+
+      .hero-description {
+        font-size: 15px;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .hero-points {
+        display: grid;
+        gap: 12px;
+      }
+
+      section {
+        padding: 60px 0;
+      }
+
+      .specialty-grid,
+      .checklist-grid,
+      .source-list {
+        grid-template-columns: 1fr;
+      }
+
+      .specialty-card {
+        padding: 20px;
       }
 
       .contact-panel {
-        padding: 22px;
+        padding: 25px 19px;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .footer-right {
+        text-align: left;
       }
     }
   </style>
 </head>
 
 <body>
-  <header>
-    <div class="container nav">
-      <a class="brand" href="#top">Военный справочник</a>
 
-      <nav aria-label="Основная навигация">
-        <a href="#specialties">Специальности</a>
-        <a href="#checklist">Что проверить</a>
-        <a href="#sources">Документы</a>
-        <a href="#contacts">Контакты</a>
+  <header class="header">
+    <div class="container nav">
+      <a class="brand" href="#home" aria-label="КонтрСоюз — главная">
+        <img src="kontrosoyuz-avatar.jpg" alt="Логотип КонтрСоюз">
+        <span>
+          <span class="brand-name">Контр<span>Союз</span></span>
+          <span class="brand-caption">Рекрутинговый центр</span>
+        </span>
+      </a>
+
+      <nav class="nav-links" aria-label="Главное меню">
+        <a href="#about">О центре</a>
+        <a href="#specialties">Направления</a>
+        <a href="#steps">Порядок действий</a>
+        <a href="#sources">Источники</a>
       </nav>
+
+      <a class="nav-button" href="#contacts">Связаться</a>
     </div>
   </header>
 
-  <section class="hero" id="top">
-    <img
-      class="hero-image"
-      src="https://commons.wikimedia.org/wiki/Special:FilePath/75Parad_01.jpg"
-      alt="Российские военнослужащие на военном параде"
-      fetchpriority="high"
-    >
-
-    <div class="container hero-content">
-      <div class="eyebrow">Информационный справочник</div>
-
-      <h1>Военные специальности и направления службы</h1>
-
-      <p>
-        Обзор распространённых направлений, задач и общих требований.
-        Информация поможет разобраться в терминологии и подготовиться
-        к изучению официальных документов.
-      </p>
-
-      <div class="hero-note">
-        Описание специальности не гарантирует назначения на конкретную
-        должность. Условия, обязанности и место службы необходимо
-        уточнять по официальным документам.
-      </div>
-    </div>
-  </section>
-
   <main>
-    <section id="specialties">
+    <!-- Главный экран -->
+
+    <section class="hero" id="home">
+      <img
+        class="hero-image"
+        src="kontrosoyuz-banner.jpg"
+        alt=""
+        fetchpriority="high"
+      >
+
+      <div class="container">
+        <div class="hero-content">
+          <div class="eyebrow">Рекрутинговый центр</div>
+
+          <h1>
+            Контр<span>Союз</span><br>
+            Люди, которые<br>
+            двигают бизнес
+          </h1>
+
+          <p class="hero-description">
+            Информационная поддержка кандидатов по вопросам
+            контрактной службы. Помогаем разобраться в направлениях,
+            требованиях и порядке обращения в уполномоченные органы.
+          </p>
+
+          <div class="hero-actions">
+            <a class="button" href="#specialties">
+              Изучить направления
+            </a>
+            <a class="button button-outline" href="#contacts">
+              Связаться с центром
+            </a>
+          </div>
+
+          <div class="hero-points">
+            <div class="hero-point">
+              <span class="check-icon">✓</span>
+              Информация о направлениях
+            </div>
+            <div class="hero-point">
+              <span class="check-icon">✓</span>
+              Ориентир по требованиям
+            </div>
+            <div class="hero-point">
+              <span class="check-icon">✓</span>
+              Официальные источники
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- О центре -->
+
+    <section id="about">
+      <div class="container about-grid">
+        <div class="about-image-wrap">
+          <img
+            class="about-image"
+            src="kontrosoyuz-avatar.jpg"
+            alt="КонтрСоюз — рекрутинговый центр"
+            loading="lazy"
+          >
+        </div>
+
+        <div class="about-content">
+          <div class="section-label">О центре</div>
+          <h2>КонтрСоюз — ваш партнёр в вопросах подбора</h2>
+
+          <p>
+            Мы предоставляем информационную поддержку людям,
+            которые рассматривают возможность заключения контракта
+            и хотят заранее разобраться в доступных направлениях.
+          </p>
+
+          <p>
+            <strong>Наша задача</strong> — помочь сориентироваться
+            в специальностях, подготовить вопросы для консультации
+            и найти официальные источники информации.
+          </p>
+
+          <p>
+            Окончательное решение о допуске, назначении на должность,
+            условиях службы и заключении контракта принимают
+            уполномоченные органы.
+          </p>
+
+          <div class="about-note">
+            Перед принятием решения уточняйте актуальные выплаты,
+            требования, ограничения и условия непосредственно
+            у уполномоченных представителей.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Направления -->
+
+    <section class="specialties" id="specialties">
       <div class="container">
         <div class="section-heading">
-          <h2>Направления и специальности</h2>
-          <p>
-            Ниже приведены общие описания. Фактические обязанности
-            зависят от должности, квалификации, подготовки и конкретной части.
+          <div class="section-label">Возможные направления</div>
+          <h2>Военные специальности</h2>
+          <p class="section-description">
+            Краткая информация о некоторых направлениях.
+            Конкретные требования зависят от должности,
+            состояния здоровья, подготовки и решения уполномоченных органов.
           </p>
         </div>
 
-        <div class="photo-strip">
-          <figure class="photo">
-            <img
-              src="https://commons.wikimedia.org/wiki/Special:FilePath/2022%20Victory%20Day%20parade%20%282%29.jpg"
-              alt="Российские военнослужащие на параде"
-              loading="lazy"
-            >
-            <figcaption>
-              Военный парад. Фото: Wikimedia Commons.
-            </figcaption>
-          </figure>
+        <div class="specialty-grid">
 
-          <figure class="photo">
-            <img
-              src="https://commons.wikimedia.org/wiki/Special:FilePath/Russian%20Military%20Truck%20%2850496608308%29.jpg"
-              alt="Российский военный грузовой автомобиль"
-              loading="lazy"
-            >
-            <figcaption>
-              Военный транспорт. Фото: Airwolfhound / Wikimedia Commons.
-            </figcaption>
-          </figure>
-        </div>
-
-        <div class="grid">
-          <article class="specialty">
-            <span class="number">01</span>
+          <article class="specialty-card">
+            <div class="specialty-number">НАПРАВЛЕНИЕ 01</div>
             <h3>Водитель</h3>
             <p>
-              Управление транспортными средствами, перевозка людей
-              и имущества, проверка технического состояния автомобиля.
+              Управление транспортом и перевозка личного состава,
+              грузов или оборудования в пределах поставленных задач.
             </p>
-            <strong>Что важно:</strong>
-            <p>
-              Соответствующая категория водительского удостоверения,
-              внимательность и соблюдение правил безопасности.
-            </p>
+            <div class="requirements">
+              <strong>Может потребоваться:</strong>
+              водительское удостоверение нужной категории,
+              соответствие медицинским требованиям.
+            </div>
           </article>
 
-          <article class="specialty">
-            <span class="number">02</span>
-            <h3>Механик и ремонтная специальность</h3>
+          <article class="specialty-card">
+            <div class="specialty-number">НАПРАВЛЕНИЕ 02</div>
+            <h3>Механик и техник</h3>
             <p>
-              Техническое обслуживание и ремонт транспорта, двигателей
-              и различного оборудования.
+              Техническое обслуживание, диагностика и поддержание
+              оборудования или техники в рабочем состоянии.
             </p>
-            <strong>Что важно:</strong>
-            <p>
-              Технические знания, аккуратность и готовность работать
-              с инструментами и документацией.
-            </p>
+            <div class="requirements">
+              <strong>Может потребоваться:</strong>
+              технические навыки, профильная подготовка
+              или обучение по установленной программе.
+            </div>
           </article>
 
-          <article class="specialty">
-            <span class="number">03</span>
-            <h3>Специалист связи</h3>
+          <article class="specialty-card">
+            <div class="specialty-number">НАПРАВЛЕНИЕ 03</div>
+            <h3>Связь</h3>
             <p>
-              Работа со средствами связи, радиооборудованием
-              и системами передачи информации.
+              Работа со средствами связи, передача информации
+              и обеспечение функционирования соответствующих систем.
             </p>
-            <strong>Что важно:</strong>
-            <p>
-              Внимательность, дисциплина и способность разбираться
-              в технических устройствах.
-            </p>
+            <div class="requirements">
+              <strong>Может потребоваться:</strong>
+              внимательность, техническая грамотность,
+              готовность освоить специальное оборудование.
+            </div>
           </article>
 
-          <article class="specialty">
-            <span class="number">04</span>
-            <h3>Специалист по беспилотным системам</h3>
+          <article class="specialty-card">
+            <div class="specialty-number">НАПРАВЛЕНИЕ 04</div>
+            <h3>Беспилотные системы</h3>
             <p>
-              Работа с беспилотными системами и наземным оборудованием,
-              техническое обслуживание в рамках должностных обязанностей.
+              Работа с беспилотными комплексами и сопутствующим
+              оборудованием в рамках конкретной должности.
             </p>
-            <strong>Что важно:</strong>
-            <p>
-              Навыки работы с электроникой и компьютерами могут быть
-              полезны. Требования и подготовка зависят от должности.
-            </p>
+            <div class="requirements">
+              <strong>Может потребоваться:</strong>
+              уверенное обращение с техникой, внимательность,
+              обучение и проверка соответствия требованиям.
+            </div>
           </article>
 
-          <article class="specialty">
-            <span class="number">05</span>
-            <h3>Техническое направление ПВО</h3>
+          <article class="specialty-card">
+            <div class="specialty-number">НАПРАВЛЕНИЕ 05</div>
+            <h3>Противовоздушная оборона</h3>
             <p>
-              Обслуживание и эксплуатация технических средств,
-              оборудования обнаружения и систем управления.
+              Обслуживание и применение предусмотренных должностью
+              систем обнаружения и противовоздушной обороны.
             </p>
-            <strong>Что важно:</strong>
-            <p>
-              Техническое мышление, точность и специальная подготовка.
-            </p>
+            <div class="requirements">
+              <strong>Может потребоваться:</strong>
+              медицинское соответствие, подготовка
+              и обучение по специальности.
+            </div>
           </article>
 
-          <article class="specialty">
-            <span class="number">06</span>
-            <h3>Логистика и материальное обеспечение</h3>
+          <article class="specialty-card">
+            <div class="specialty-number">НАПРАВЛЕНИЕ 06</div>
+            <h3>Логистика и обеспечение</h3>
             <p>
-              Учёт, хранение, оформление документов, выдача имущества
-              и организация материального обеспечения.
+              Учёт, хранение, комплектование и организация
+              обеспечения подразделений необходимыми ресурсами.
             </p>
-            <strong>Что важно:</strong>
-            <p>
-              Организованность, ответственность и внимательность
-              при работе с документами.
-            </p>
+            <div class="requirements">
+              <strong>Может потребоваться:</strong>
+              организованность, внимательность к документам,
+              готовность выполнять регламентированные задачи.
+            </div>
           </article>
 
-          <article class="specialty">
-            <span class="number">07</span>
+          <article class="specialty-card">
+            <div class="specialty-number">НАПРАВЛЕНИЕ 07</div>
             <h3>Медицинское направление</h3>
             <p>
-              Медицинская помощь и обеспечение в пределах квалификации,
-              должностных обязанностей и установленной подготовки.
+              Выполнение медицинских и санитарных задач
+              в пределах должности и имеющейся квалификации.
             </p>
-            <strong>Что важно:</strong>
-            <p>
-              Для ряда должностей необходимы профильное образование
-              и соответствующая подготовка.
-            </p>
+            <div class="requirements">
+              <strong>Может потребоваться:</strong>
+              профильное образование или подготовка,
+              предусмотренная для конкретной должности.
+            </div>
           </article>
 
-          <article class="specialty">
-            <span class="number">08</span>
-            <h3>Инженерно-техническое направление</h3>
+          <article class="specialty-card">
+            <div class="specialty-number">НАПРАВЛЕНИЕ 08</div>
+            <h3>Инженерное направление</h3>
             <p>
-              Работа с инженерным оборудованием, техническими средствами
-              и выполнением профильных инженерных задач.
+              Работа с инженерным оборудованием, сооружениями
+              и техническим обеспечением в рамках должностных задач.
             </p>
-            <strong>Что важно:</strong>
-            <p>
-              Технические знания, соблюдение инструкций
-              и специальное обучение.
-            </p>
+            <div class="requirements">
+              <strong>Может потребоваться:</strong>
+              технические навыки, соблюдение требований
+              безопасности и специальная подготовка.
+            </div>
           </article>
 
-          <article class="specialty">
-            <span class="number">09</span>
-            <h3>Танковое направление</h3>
+          <article class="specialty-card">
+            <div class="specialty-number">НАПРАВЛЕНИЕ 09</div>
+            <h3>Бронетанковое направление</h3>
             <p>
-              Работа в экипаже и обслуживание систем бронетехники
-              в соответствии с распределением обязанностей.
+              Обслуживание и эксплуатация бронетехники
+              в соответствии с назначенной должностью.
             </p>
-            <strong>Что важно:</strong>
-            <p>
-              Дисциплина, прохождение подготовки и соответствие
-              установленным требованиям к должности.
-            </p>
+            <div class="requirements">
+              <strong>Может потребоваться:</strong>
+              медицинское соответствие, обучение
+              и подготовка по профилю.
+            </div>
           </article>
 
-          <article class="specialty">
-            <span class="number">10</span>
+          <article class="specialty-card">
+            <div class="specialty-number">НАПРАВЛЕНИЕ 10</div>
             <h3>Мотострелковое направление</h3>
             <p>
-              Выполнение общих задач подразделения в соответствии
-              с занимаемой должностью и подготовкой.
+              Выполнение задач в составе подразделения
+              после прохождения предусмотренной подготовки.
             </p>
-            <strong>Что важно:</strong>
-            <p>
-              Необходимо учитывать физическую нагрузку, медицинские
-              требования, обучение и характер обязанностей.
-            </p>
+            <div class="requirements">
+              <strong>Может потребоваться:</strong>
+              соответствие установленным требованиям,
+              прохождение обучения и отбора.
+            </div>
           </article>
+
+        </div>
+
+        <div class="specialty-warning">
+          <strong>Обратите внимание.</strong>
+          Перечень приведён для общего ознакомления и не является
+          гарантией назначения на конкретную должность.
+          Наличие вакансий, условия, требования и возможность выбора
+          специальности необходимо уточнять официально до подписания документов.
         </div>
       </div>
     </section>
 
-    <section class="soft-section" id="checklist">
+    <!-- Порядок действий -->
+
+    <section id="steps">
       <div class="container">
         <div class="section-heading">
-          <h2>Что необходимо проверить заранее</h2>
-          <p>
-            Устных объяснений недостаточно для оценки юридических
-            и финансовых обязательств. Важные условия нужно проверять
-            по документам.
+          <div class="section-label">Порядок действий</div>
+          <h2>С чего начать</h2>
+          <p class="section-description">
+            Последовательность шагов для тех, кто рассматривает
+            возможность заключения контракта.
           </p>
         </div>
 
-        <div class="checklist">
-          <article class="check-item">
-            <h3>01. Конкретная должность</h3>
+        <div class="steps-grid">
+          <article class="step">
+            <div class="step-number">01</div>
+            <h3>Изучите информацию</h3>
             <p>
-              Уточните официальное наименование должности, круг обязанностей
-              и то, какие условия назначения закреплены документально.
+              Ознакомьтесь с направлениями, требованиями,
+              ограничениями и актуальными условиями.
             </p>
           </article>
 
-          <article class="check-item">
-            <h3>02. Срок и прекращение договора</h3>
+          <article class="step">
+            <div class="step-number">02</div>
+            <h3>Уточните условия</h3>
             <p>
-              Изучите срок действия договора, порядок его продления,
-              прекращения и применимые ограничения.
+              Задайте вопросы о должности, подготовке, выплатах,
+              сроках, обязанностях и порядке отбора.
             </p>
           </article>
 
-          <article class="check-item">
-            <h3>03. Выплаты и компенсации</h3>
+          <article class="step">
+            <div class="step-number">03</div>
+            <h3>Обратитесь официально</h3>
             <p>
-              Проверяйте основания, размеры, сроки и условия выплат
-              по актуальным официальным документам. Не полагайтесь
-              только на устные обещания.
-            </p>
-          </article>
-
-          <article class="check-item">
-            <h3>04. Документы и медицинские требования</h3>
-            <p>
-              Заранее выясните перечень документов, порядок проверки
-              состояния здоровья и другие требования к должности.
-            </p>
-          </article>
-
-          <article class="check-item">
-            <h3>05. Место службы и условия</h3>
-            <p>
-              Уточните, какие условия места службы, распределения
-              и изменения должности закреплены документами, а какие
-              не могут быть гарантированы заранее.
-            </p>
-          </article>
-
-          <article class="check-item">
-            <h3>06. Возможные последствия</h3>
-            <p>
-              Разберитесь в правовых обязательствах, ограничениях,
-              рисках для здоровья и жизни, а также в последствиях
-              подписания договора до принятия решения.
+              Проверьте документы и обратитесь в уполномоченный
+              орган для получения подтверждённых сведений.
             </p>
           </article>
         </div>
       </div>
     </section>
+
+    <!-- Чек-лист -->
+
+    <section class="checklist-section" id="checklist">
+      <div class="container">
+        <div class="section-heading">
+          <div class="section-label">Перед обращением</div>
+          <h2>Что стоит уточнить заранее</h2>
+          <p class="section-description">
+            Используйте этот список при разговоре с уполномоченным представителем.
+          </p>
+        </div>
+
+        <div class="checklist-grid">
+          <div class="checklist-item">
+            <span class="check-icon">✓</span>
+            <span>Какая должность предлагается и какие обязанности она предполагает?</span>
+          </div>
+
+          <div class="checklist-item">
+            <span class="check-icon">✓</span>
+            <span>Какие выплаты предусмотрены, из чего они состоят и когда выплачиваются?</span>
+          </div>
+
+          <div class="checklist-item">
+            <span class="check-icon">✓</span>
+            <span>Каковы срок контракта, условия его действия и предусмотренный порядок прекращения?</span>
+          </div>
+
+          <div class="checklist-item">
+            <span class="check-icon">✓</span>
+            <span>Как проходит медицинское освидетельствование и профессиональный отбор?</span>
+          </div>
+
+          <div class="checklist-item">
+            <span class="check-icon">✓</span>
+            <span>Какая подготовка предусмотрена до начала исполнения должностных обязанностей?</span>
+          </div>
+
+          <div class="checklist-item">
+            <span class="check-icon">✓</span>
+            <span>Какие документы необходимо предоставить и где проверить условия официально?</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Официальные источники -->
 
     <section id="sources">
       <div class="container">
         <div class="section-heading">
+          <div class="section-label">Проверка информации</div>
           <h2>Официальные источники</h2>
-          <p>
-            Проверяйте действующие редакции документов и условия,
-            применимые именно к вашей ситуации.
+          <p class="section-description">
+            Проверяйте актуальные нормативные документы, условия
+            и порядок обращения через официальные государственные ресурсы.
           </p>
         </div>
 
-        <div class="resources">
+        <div class="source-list">
           <a
-            class="resource"
-            href="https://publication.pravo.gov.ru/search"
+            class="source-card"
+            href="https://pravo.gov.ru/"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <strong>Официальное опубликование правовых актов</strong>
-            <span>
-              Поиск федеральных законов, указов и других опубликованных
-              правовых актов.
-            </span>
+            <div>
+              <h3>Официальный интернет-портал правовой информации</h3>
+              <p>Нормативные правовые акты и официальные публикации</p>
+            </div>
+            <span class="source-arrow">↗</span>
           </a>
 
           <a
-            class="resource"
+            class="source-card"
             href="https://www.gosuslugi.ru/"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <strong>Госуслуги</strong>
-            <span>
-              Государственный портал с информацией об услугах
-              и официальных процедурах.
-            </span>
+            <div>
+              <h3>Госуслуги</h3>
+              <p>Государственная информация и электронные услуги</p>
+            </div>
+            <span class="source-arrow">↗</span>
           </a>
         </div>
+
+        <p class="source-disclaimer">
+          Информация на сайте носит ознакомительный характер.
+          Актуальные условия, размеры выплат и порядок оформления
+          следует подтверждать у уполномоченных органов.
+        </p>
       </div>
     </section>
 
-    <section>
-      <div class="container">
-        <div class="notice">
-          <h3>Важная информация</h3>
-          <p>
-            Этот сайт является независимым информационным справочником
-            и не представляет государственный орган или Министерство обороны.
-            Описания специальностей носят общий характер и не являются
-            гарантией назначения на определённую должность.
-          </p>
-          <p>
-            Сведения о выплатах, сроках договора, порядке его прекращения,
-            требованиях и условиях службы необходимо сверять с актуальными
-            официальными документами. Фотографии используются
-            в иллюстративных целях.
-          </p>
-        </div>
-      </div>
-    </section>
+    <!-- Контакты -->
 
-    <section id="contacts">
+    <section class="contact-section" id="contacts">
       <div class="container">
         <div class="contact-panel">
-          <h2>Контакты автора справочника</h2>
-          <p>
-            Контактные данные для вопросов по содержанию и работе
-            этого информационного сайта. Это личные контакты автора,
-            а не официальная государственная горячая линия.
-          </p>
-
           <div class="contact-grid">
-            <a class="contact-link" href="tel:+79817450952">
-              <span class="contact-label">Телефон</span>
-              +7 981 745-09-52
-            </a>
+            <div>
+              <div class="section-label">Контактная информация</div>
+              <h2>Свяжитесь с «КонтрСоюз»</h2>
+              <p>
+                Напишите или позвоните, чтобы уточнить информацию
+                о направлениях и порядке дальнейшего обращения.
+              </p>
 
-            <a
-              class="contact-link"
-              href="https://t.me/CKAM0076"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span class="contact-label">Telegram</span>
-              @skeeteater
-            </a>
+              <a class="button" href="tel:+79313377369">
+                Позвонить в центр
+              </a>
 
-            <a
-              class="contact-link"
-              href="https://wa.me/79817450952"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span class="contact-label">WhatsApp</span>
-              +7 981 745-09-52
-            </a>
+              <div class="contact-disclaimer">
+                Перед передачей персональных данных уточните,
+                кто их получает, для какой цели и на каком основании.
+              </div>
+            </div>
 
-            <a
-              class="contact-link"
-              href="https://vk.ru/user6x"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span class="contact-label">ВКонтакте</span>
-              vk.ru/user6x
-            </a>
+            <div class="contact-methods">
+              <a class="contact-method" href="tel:+79313377369">
+                <span class="contact-symbol">☎</span>
+                <span>
+                  <small>Телефон</small>
+                  <strong>+7 931 337-73-69</strong>
+                </span>
+              </a>
+
+              <a
+                class="contact-method"
+                href="https://t.me/CKAM0076"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span class="contact-symbol">➤</span>
+                <span>
+                  <small>Telegram</small>
+                  <strong>@user202178</strong>
+                </span>
+              </a>
+
+              <a
+                class="contact-method"
+                href="https://wa.me/79313377369"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span class="contact-symbol">◉</span>
+                <span>
+                  <small>WhatsApp</small>
+                  <strong>Написать в WhatsApp</strong>
+                </span>
+              </a>
+
+              <a
+                class="contact-method"
+                href="https://vk.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span class="contact-symbol">ВК</span>
+                <span>
+                  <small>ВКонтакте</small>
+                  <strong>Открыть VK</strong>
+                </span>
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -809,10 +1294,19 @@
   </main>
 
   <footer>
-    <div class="container footer-inner">
-      <span>Информационный справочник о военных специальностях</span>
-      <span>Неофициальный сайт · Не является юридической консультацией</span>
+    <div class="container footer-content">
+      <div>
+        <div class="footer-brand">Контр<span>Союз</span></div>
+        <div class="footer-caption">Рекрутинговый центр</div>
+      </div>
+
+      <div class="footer-right">
+        Информационный ресурс.<br>
+        Условия уточняйте у уполномоченных органов.
+      </div>
     </div>
   </footer>
+
 </body>
 </html>
+
